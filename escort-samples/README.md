@@ -16,3 +16,7 @@ sequenceDiagram
     end
     Order-->>Business: success
 ```
+
+由于gitlab不支持mermaid，示例调用时序图如下：
+
+![时序图](../resources/sequence-diagram.png)
