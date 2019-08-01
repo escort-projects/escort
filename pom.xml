@@ -14,6 +14,7 @@
         <module>escort-client</module>
         <module>escort-server</module>
         <module>escort-spring</module>
+        <module>escort-samples</module>
     </modules>
 
     <properties>
