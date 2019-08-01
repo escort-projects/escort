@@ -1,0 +1,42 @@
+# Operating System Files
+
+*.DS_Store
+Thumbs.db
+*~
+.#*
+#*
+*#
+
+# Build Files #
+
+bin
+target
+build/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+*.lck
+
+# Maven
+log/
+target/
+
+logs/*.log
+
+# make
+
+output/
+*.log
+
+# tmp
+*m*.epoch
