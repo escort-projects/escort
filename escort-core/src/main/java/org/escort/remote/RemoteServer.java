@@ -1,6 +1,6 @@
-package org.escort.transmission;
+package org.escort.remote;
 
-import org.escort.event.IEvent;
+import org.escort.protocol.BaseEvent;
 import org.escort.event.ResultMessage;
 
 /**
@@ -17,12 +17,13 @@ public interface RemoteServer {
      * @param event 消息
      * @return 结果
      */
-    ResultMessage receiveEventSyncReply(IEvent event);
+    ResultMessage receiveEventSyncReply(BaseEvent event);
 
     /**
      * 异步数据返回，当前请求不需要返回结果
      *
      * @param event 消息
      */
-    void receiveEventNoReply(IEvent event);
+    void receiveEventNoReply(BaseEvent event);
+
 }

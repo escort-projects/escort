@@ -1,9 +1,7 @@
-package org.escort.transmission;
+package org.escort.remote;
 
-import org.escort.event.IEvent;
+import org.escort.protocol.BaseEvent;
 import org.escort.event.ResultMessage;
-
-import java.util.concurrent.Future;
 
 /**
  * 客户端发送接口（RM、TM、TC）
@@ -19,21 +17,13 @@ public interface RemoteClient {
      * @param event 消息
      * @return 结果
      */
-    ResultMessage syncSendEvent(IEvent event);
-
-    /**
-     * 异步调用接口
-     *
-     * @param event 消息
-     * @return 结果
-     */
-    Future<ResultMessage> asyncSendEvent(IEvent event);
+    ResultMessage send(BaseEvent event);
 
     /**
      * 无返回结果调用，失败抛除运行时异常（网络原因等）
      *
      * @param event 消息
      */
-    void notifyvent(IEvent event);
+    void asyncSend(BaseEvent event);
 
 }
