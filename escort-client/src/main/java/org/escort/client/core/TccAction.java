@@ -1,4 +1,4 @@
-package org.escort.core;
+package org.escort.client.core;
 
 import java.lang.annotation.*;
 

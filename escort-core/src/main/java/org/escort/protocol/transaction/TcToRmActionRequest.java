@@ -2,7 +2,6 @@ package org.escort.protocol.transaction;
 
 import lombok.Builder;
 import lombok.Data;
-import org.escort.protocol.TypeCodeDefine;
 
 /**
  * TC call RM / TM

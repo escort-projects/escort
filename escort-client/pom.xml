@@ -11,5 +11,11 @@
 
     <artifactId>escort-client</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.escort</groupId>
+            <artifactId>escort-core</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

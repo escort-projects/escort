@@ -1,5 +1,6 @@
 package org.escort.samples.tcc.business.service;
 
+import org.escort.client.core.GlobalTccTransaction;
 import org.escort.sample.tcc.common.OrderDTO;
 import org.escort.sample.tcc.common.ProductStockDTO;
 import org.escort.samples.tcc.business.bo.BuildOrderBO;
@@ -20,6 +21,7 @@ public class BusinessService {
     @Autowired
     private StockFeignClient stockFeignClient;
 
+    @GlobalTccTransaction
     public void execute(BuildOrderBO buildOrder) {
         if (stockFeignClient.deduct(ProductStockDTO.builder().productId(buildOrder.getProductId()).stock(buildOrder.getStock()).build())) {
             System.out.println("deduct stock success");

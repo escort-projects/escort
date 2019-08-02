@@ -1,7 +1,6 @@
 package org.escort.remote;
 
 import org.escort.protocol.BaseEvent;
-import org.escort.event.ResultMessage;
 
 /**
  * 客户端发送接口（RM、TM、TC）
@@ -17,7 +16,7 @@ public interface RemoteClient {
      * @param event 消息
      * @return 结果
      */
-    ResultMessage send(BaseEvent event);
+    BaseEvent send(BaseEvent event);
 
     /**
      * 无返回结果调用，失败抛除运行时异常（网络原因等）

@@ -3,34 +3,36 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>escort-samples</artifactId>
+        <artifactId>escort-spring</artifactId>
         <groupId>org.escort</groupId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tcc-business-sample</artifactId>
+    <artifactId>escort-spring-client</artifactId>
 
     <dependencies>
-
         <dependency>
             <groupId>org.escort</groupId>
-            <artifactId>escort-spring</artifactId>
+            <artifactId>escort-client</artifactId>
             <version>0.1.0-SNAPSHOT</version>
         </dependency>
+        <!-- spring  -->
         <dependency>
-            <groupId>org.escort</groupId>
-            <artifactId>escort-spring-client</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.escort</groupId>
-            <artifactId>tcc-common-sample</artifactId>
-            <version>${version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -1,7 +1,6 @@
 package org.escort.remote;
 
 import org.escort.protocol.BaseEvent;
-import org.escort.event.ResultMessage;
 
 /**
  * 服务端接收接口（RM、TM、TC）
@@ -17,7 +16,7 @@ public interface RemoteServer {
      * @param event 消息
      * @return 结果
      */
-    ResultMessage receiveEventSyncReply(BaseEvent event);
+    BaseEvent receiveEventSyncReply(BaseEvent event);
 
     /**
      * 异步数据返回，当前请求不需要返回结果
