@@ -11,5 +11,11 @@
 
     <artifactId>tcc-stock-sample</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.escort</groupId>
+            <artifactId>tcc-common-sample</artifactId>
+            <version>${version}</version>
+        </dependency>
+    </dependencies>
 </project>

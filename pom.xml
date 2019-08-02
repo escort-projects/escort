@@ -23,6 +23,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- 3rd -->
         <lombok.version>1.16.20</lombok.version>
+        <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
 
     <dependencyManagement>

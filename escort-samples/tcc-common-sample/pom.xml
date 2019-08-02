@@ -9,17 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tcc-business-sample</artifactId>
+    <artifactId>tcc-common-sample</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.escort</groupId>
-            <artifactId>tcc-common-sample</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-    </dependencies>
 </project>
