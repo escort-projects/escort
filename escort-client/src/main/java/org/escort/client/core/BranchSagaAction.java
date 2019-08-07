@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD })
 @Inherited
-public @interface SagaAction {
+public @interface BranchSagaAction {
 
     // TODO Saga 可能分为 Remote 和 local
 

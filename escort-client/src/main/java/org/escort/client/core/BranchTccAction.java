@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD })
 @Inherited
-public @interface TccAction {
+public @interface BranchTccAction {
 
     // TODO TCC 可能分为 Remote 和 local
 
