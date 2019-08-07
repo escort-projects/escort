@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class EscortAutoConfiguration {
 
     @Bean
-    public EscortTransactionScanner baseTransactionScanner() {
+    public EscortTransactionScanner transactionScanner() {
         return new EscortTransactionScanner();
     }
 }

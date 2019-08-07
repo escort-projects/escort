@@ -27,6 +27,6 @@ public class BusinessApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // businessService.execute(new BuildOrderBO(1, 2, 3, new BigDecimal(4)));
+         businessService.execute(new BuildOrderBO(1, 2, 3, new BigDecimal(4)));
     }
 }
