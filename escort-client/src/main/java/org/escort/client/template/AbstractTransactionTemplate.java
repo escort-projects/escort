@@ -11,6 +11,4 @@ public class AbstractTransactionTemplate {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractTransactionTemplate.class);
 
-
-
 }

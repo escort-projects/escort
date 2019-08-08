@@ -17,5 +17,10 @@
             <artifactId>tcc-common-sample</artifactId>
             <version>${version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.escort</groupId>
+            <artifactId>escort-spring-client</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

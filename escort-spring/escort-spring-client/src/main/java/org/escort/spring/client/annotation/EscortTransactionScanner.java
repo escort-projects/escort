@@ -1,6 +1,8 @@
 package org.escort.spring.client.annotation;
 
 import org.escort.client.core.*;
+import org.escort.spring.client.annotation.pattern.BranchTccActionInterceptor;
+import org.escort.spring.client.annotation.pattern.GlobalTccInterceptor;
 import org.escort.spring.client.util.EscortBeanParserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +48,9 @@ public class EscortTransactionScanner extends AbstractAutoProxyCreator implement
     protected Object[] getAdvicesAndAdvisorsForBean(Class<?> clazz, String beanName, TargetSource targetSource) throws BeansException {
         LOGGER.info("getAdvicesAndAdvisorsForBean: {},{}", clazz.getName(), beanName);
         if (EscortBeanParserUtils.isProxyTargetBean(clazz, GlobalTccTransaction.class)) {
-            return new Object[]{new BaseTransactionInterceptor()};
+            return new Object[]{new GlobalTccInterceptor()};
+        } else if (EscortBeanParserUtils.isProxyTargetBean(clazz, BranchTccAction.class)) {
+            return new Object[]{new BranchTccActionInterceptor()};
         }
         return null;
     }

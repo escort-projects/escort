@@ -7,7 +7,7 @@ import java.lang.annotation.*;
  * @Date: 2019/8/1 17:20
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD })
+@Target({ElementType.METHOD})
 @Inherited
 public @interface BranchTccAction {
 
@@ -40,4 +40,19 @@ public @interface BranchTccAction {
      * @return asynchronous
      */
     boolean asyncCancel() default false;
+
+    /**
+     * 最大重试次数
+     */
+    int retryMaxAttempts();
+
+    /**
+     * 发起请求间隔
+     */
+    long retryPeriod();
+
+    /**
+     * 总的最大时长
+     */
+    long retryMaxPeriod();
 }

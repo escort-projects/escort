@@ -12,18 +12,10 @@ import java.lang.reflect.Method;
  * @Author: Shoukai Huang
  * @Date: 2019/8/7 11:28
  */
-public class BaseTransactionInterceptor implements MethodInterceptor {
+public abstract class BaseTransactionInterceptor implements MethodInterceptor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTransactionInterceptor.class);
 
-    @Override
-    public Object invoke(MethodInvocation invocation) throws Throwable {
-        Method method = invocation.getMethod();
-        GlobalTccTransaction globalTccTransaction = method.getAnnotation(GlobalTccTransaction.class);
-        if (globalTccTransaction != null) {
-            System.out.println("this is @GlobalTccTransaction");
-        }
-        return invocation.proceed();
-    }
+
 
 }
