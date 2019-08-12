@@ -13,8 +13,8 @@ public class DefaultMethodHandler implements MethodHandler {
 
     private MethodHandle handle;
 
-    public DefaultMethodHandler(Object bean,String methodName) {
-        // TODO
+    public DefaultMethodHandler(MethodHandle handle) {
+        this.handle = handle;
     }
 
     @Override

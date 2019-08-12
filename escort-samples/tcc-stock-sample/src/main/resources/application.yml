@@ -1,2 +1,7 @@
 server:
   port: 18082
+logging:
+  level:
+    root: info
+    org:
+      escort: DEBUG

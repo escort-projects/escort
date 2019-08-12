@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * process transaction context
+ * 负责分布式事务RM上下文管理（动态信息）
  *
  * @Author: Shoukai Huang
  * @Date: 2019/8/8 14:02

@@ -1,7 +1,5 @@
 package org.escort.spring.client;
 
-import org.escort.spring.client.annotation.EscortTransactionScanner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -11,8 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class EscortAutoConfiguration {
 
-    @Bean
-    public EscortTransactionScanner transactionScanner() {
-        return new EscortTransactionScanner();
-    }
+
 }

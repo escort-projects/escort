@@ -1,9 +1,8 @@
 package org.escort.spring.client.annotation;
 
-import org.escort.client.core.*;
-import org.escort.spring.client.annotation.pattern.BranchTccActionInterceptor;
-import org.escort.spring.client.annotation.pattern.GlobalTccInterceptor;
-import org.escort.spring.client.util.EscortBeanParserUtils;
+import org.escort.client.pattern.PatternProcessor;
+import org.escort.spring.client.EscortAnnotationConfiguration;
+import org.escort.utils.ReflectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.TargetSource;
@@ -11,12 +10,11 @@ import org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import java.lang.annotation.Annotation;
-import java.util.HashSet;
-import java.util.Set;
+import java.lang.reflect.Method;
 
 /**
  * @Author: Shoukai Huang
@@ -26,15 +24,8 @@ public class EscortTransactionScanner extends AbstractAutoProxyCreator implement
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EscortTransactionScanner.class);
 
-    private static Set<Class<? extends Annotation>> annotationClasses = new HashSet<>();
-
-    static {
-        annotationClasses.add(BranchSagaAction.class);
-        annotationClasses.add(BranchTccAction.class);
-        annotationClasses.add(GlobalTccTransaction.class);
-        annotationClasses.add(GlobalSagaTransaction.class);
-        annotationClasses.add(GlobalHybridTransaction.class);
-    }
+    @Autowired
+    private EscortAnnotationConfiguration.InterceptorFilter interceptorFilter;
 
     public EscortTransactionScanner() {
     }
@@ -47,10 +38,17 @@ public class EscortTransactionScanner extends AbstractAutoProxyCreator implement
     @Override
     protected Object[] getAdvicesAndAdvisorsForBean(Class<?> clazz, String beanName, TargetSource targetSource) throws BeansException {
         LOGGER.info("getAdvicesAndAdvisorsForBean: {},{}", clazz.getName(), beanName);
-        if (EscortBeanParserUtils.isProxyTargetBean(clazz, GlobalTccTransaction.class)) {
-            return new Object[]{new GlobalTccInterceptor()};
-        } else if (EscortBeanParserUtils.isProxyTargetBean(clazz, BranchTccAction.class)) {
-            return new Object[]{new BranchTccActionInterceptor()};
+        for (BaseTransactionInterceptor baseTransactionInterceptor : interceptorFilter.getInterceptors()) {
+            PatternProcessor patternProcessor = baseTransactionInterceptor.getPatternProcessor();
+            if (ReflectionUtils.isProxyTargetBean(clazz, patternProcessor.getAnnotation())) {
+                try {
+                    Method method = ReflectionUtils.getMethodByAnnotation(clazz, patternProcessor.getAnnotation());
+                    patternProcessor.init(method.getAnnotation(patternProcessor.getAnnotation()), clazz, method);
+                    return new Object[]{baseTransactionInterceptor};
+                } catch (Exception e) {
+                    LOGGER.error("init PatternProcessor error. ", e);
+                }
+            }
         }
         return null;
     }
@@ -78,4 +76,5 @@ public class EscortTransactionScanner extends AbstractAutoProxyCreator implement
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.setBeanFactory(applicationContext);
     }
+
 }

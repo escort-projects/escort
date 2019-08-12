@@ -2,6 +2,8 @@ package org.escort.client.context;
 
 import org.escort.client.MethodHandler;
 import org.escort.client.MethodType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -12,10 +14,13 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class DefaultMethodHandlerManager implements MethodHandlerManager {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultMethodHandlerManager.class);
+
     private static ConcurrentMap<String, MethodHandler> methodHandlerMap = new ConcurrentHashMap<>(256);
 
     @Override
     public void register(MethodType methodType, String methodRootId, MethodHandler methodHandler) {
+        LOGGER.debug("MethodHandlerManager register: MethodType of {}, MethodRootId of {}", methodType, methodRootId);
         methodHandlerMap.putIfAbsent(buildMethodName(methodRootId, methodType), methodHandler);
     }
 

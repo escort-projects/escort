@@ -1,10 +1,12 @@
 package org.escort.client.context;
 
+import java.io.Serializable;
+
 /**
  * @Author: Shoukai Huang
  * @Date: 2019/8/8 14:04
  */
-public class TransactionContext {
+public class TransactionContext implements Serializable {
 
     private static Integer GLOBAL = 0;
 
