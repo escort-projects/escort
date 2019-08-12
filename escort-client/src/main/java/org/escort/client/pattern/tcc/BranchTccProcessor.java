@@ -4,6 +4,7 @@ import org.escort.client.MethodType;
 import org.escort.client.context.DefaultMethodHandler;
 import org.escort.client.context.MethodHandlerManager;
 import org.escort.client.core.BranchTccAction;
+import org.escort.client.pattern.AbstractPatternProcessor;
 import org.escort.client.pattern.BusinessHandler;
 import org.escort.client.pattern.PatternProcessor;
 import org.escort.remote.RemoteClient;
@@ -21,7 +22,7 @@ import static org.escort.utils.NetUtils.getLocalHost;
  * @Author: Shoukai Huang
  * @Date: 2019/8/12 14:20
  */
-public class BranchTccProcessor implements PatternProcessor {
+public class BranchTccProcessor extends AbstractPatternProcessor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BranchTccProcessor.class);
 
@@ -81,10 +82,6 @@ public class BranchTccProcessor implements PatternProcessor {
         // TODO 调用业务方法，执行页面代码
         LOGGER.debug("Branch Tcc execute.");
         return businessHandler.proceed();
-    }
-
-    protected String buildRootId(Class clazz, Method method) {
-        return clazz.getName().toUpperCase() + ":" + method.getName().toUpperCase();
     }
 
 }

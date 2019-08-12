@@ -2,9 +2,11 @@ package org.escort.spring.client;
 
 import org.escort.client.context.DefaultMethodHandlerManager;
 import org.escort.client.pattern.tcc.BranchTccProcessor;
+import org.escort.client.pattern.tcc.GlobalTccProcessor;
 import org.escort.spring.client.annotation.BaseTransactionInterceptor;
 import org.escort.spring.client.annotation.EscortTransactionScanner;
 import org.escort.spring.client.annotation.interceptor.BranchTccActionInterceptor;
+import org.escort.spring.client.annotation.interceptor.GlobalTccInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -50,13 +52,20 @@ public class EscortAnnotationConfiguration {
     }
 
     @Bean
+    public GlobalTccInterceptor globalTccInterceptor() {
+        GlobalTccProcessor globalTccProcessor = new GlobalTccProcessor(null, defaultMethodHandlerManager);
+        return new GlobalTccInterceptor(globalTccProcessor);
+    }
+
+    @Bean
     public EscortTransactionScanner transactionScanner() {
         return new EscortTransactionScanner();
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         interceptorFilter().addInterceptor(branchTccActionInterceptor());
+        interceptorFilter().addInterceptor(globalTccInterceptor());
     }
 
 }
