@@ -1,8 +1,7 @@
 package org.escort.spring.client.annotation;
 
 import org.escort.client.pattern.PatternProcessor;
-import org.escort.spring.client.EscortAnnotationConfiguration;
-import org.escort.utils.ReflectionUtils;
+import org.escort.common.utils.ReflectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.TargetSource;
@@ -25,7 +24,7 @@ public class EscortTransactionScanner extends AbstractAutoProxyCreator implement
     private static final Logger LOGGER = LoggerFactory.getLogger(EscortTransactionScanner.class);
 
     @Autowired
-    private EscortAnnotationConfiguration.InterceptorFilter interceptorFilter;
+    private InterceptorFilter interceptorFilter;
 
     public EscortTransactionScanner() {
     }

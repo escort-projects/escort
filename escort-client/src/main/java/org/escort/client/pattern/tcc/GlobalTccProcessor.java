@@ -4,14 +4,14 @@ import org.escort.client.context.MethodHandlerManager;
 import org.escort.client.core.GlobalTccTransaction;
 import org.escort.client.pattern.AbstractPatternProcessor;
 import org.escort.client.pattern.BusinessHandler;
-import org.escort.remote.RemoteClient;
+import org.escort.remote.RemoteSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-import static org.escort.utils.NetUtils.getLocalHost;
+import static org.escort.common.utils.NetUtils.getLocalHost;
 
 /**
  * @Author: Shoukai Huang
@@ -22,12 +22,12 @@ public class GlobalTccProcessor extends AbstractPatternProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalTccProcessor.class);
 
     // TODO init
-    private RemoteClient remoteClient;
+    private RemoteSender remoteSender;
     // TODO init
     private MethodHandlerManager methodHandlerManager;
 
-    public GlobalTccProcessor(RemoteClient remoteClient, MethodHandlerManager methodHandlerManager) {
-        this.remoteClient = remoteClient;
+    public GlobalTccProcessor(RemoteSender remoteSender, MethodHandlerManager methodHandlerManager) {
+        this.remoteSender = remoteSender;
         this.methodHandlerManager = methodHandlerManager;
     }
 

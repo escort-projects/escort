@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.escort.spring.client.EscortAutoConfiguration
+org.escort.spring.remote.EscortRemoteConfiguration

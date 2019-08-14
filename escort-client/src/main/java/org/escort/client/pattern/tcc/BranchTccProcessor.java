@@ -6,8 +6,7 @@ import org.escort.client.context.MethodHandlerManager;
 import org.escort.client.core.BranchTccAction;
 import org.escort.client.pattern.AbstractPatternProcessor;
 import org.escort.client.pattern.BusinessHandler;
-import org.escort.client.pattern.PatternProcessor;
-import org.escort.remote.RemoteClient;
+import org.escort.remote.RemoteSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +15,7 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
 
-import static org.escort.utils.NetUtils.getLocalHost;
+import static org.escort.common.utils.NetUtils.getLocalHost;
 
 /**
  * @Author: Shoukai Huang
@@ -27,12 +26,12 @@ public class BranchTccProcessor extends AbstractPatternProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(BranchTccProcessor.class);
 
     // TODO init
-    private RemoteClient remoteClient;
+    private RemoteSender remoteSender;
     // TODO init
     private MethodHandlerManager methodHandlerManager;
 
-    public BranchTccProcessor(RemoteClient remoteClient, MethodHandlerManager methodHandlerManager) {
-        this.remoteClient = remoteClient;
+    public BranchTccProcessor(RemoteSender remoteSender, MethodHandlerManager methodHandlerManager) {
+        this.remoteSender = remoteSender;
         this.methodHandlerManager = methodHandlerManager;
     }
 

@@ -1,4 +1,4 @@
-package org.escort.utils;
+package org.escort.common.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

@@ -19,6 +19,6 @@ public class DefaultMethodHandler implements MethodHandler {
 
     @Override
     public Object invoke(Object[] argv) throws Throwable {
-        return null;
+        return handle.invoke(argv);
     }
 }

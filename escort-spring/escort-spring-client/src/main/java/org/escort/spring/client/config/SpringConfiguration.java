@@ -4,15 +4,14 @@ import org.escort.config.Configuration;
 import org.escort.loader.SimpleServiceLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+
 
 /**
  * @Author: Shoukai Huang
  * @Date: 2019/8/14 15:59
  */
-@Service
 public class SpringConfiguration implements Configuration {
 
     @Autowired
@@ -39,7 +38,8 @@ public class SpringConfiguration implements Configuration {
     }
 
     @PostConstruct
-    public void inject() {
-        SimpleServiceLoader.inject(Configuration.class, this);
+    public void init(){
+        SimpleServiceLoader.inject(org.escort.config.Configuration.class, this);
     }
+
 }

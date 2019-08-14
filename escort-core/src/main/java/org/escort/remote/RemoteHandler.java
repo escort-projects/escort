@@ -8,7 +8,7 @@ import org.escort.protocol.BaseEvent;
  * @Author: Shoukai Huang
  * @Date: 2019/8/1 19:20
  */
-public interface RemoteServer {
+public interface RemoteHandler {
 
     /**
      * 等待数据返回
@@ -16,7 +16,7 @@ public interface RemoteServer {
      * @param event 消息
      * @return 结果
      */
-    BaseEvent receiveEventSyncReply(BaseEvent event);
+    <T extends BaseEvent> T receiveEventSyncReply(BaseEvent event);
 
     /**
      * 异步数据返回，当前请求不需要返回结果

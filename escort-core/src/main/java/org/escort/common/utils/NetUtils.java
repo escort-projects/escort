@@ -1,4 +1,4 @@
-package org.escort.utils;
+package org.escort.common.utils;
 
 /**
  * @Author: Shoukai Huang
