@@ -1,7 +1,6 @@
 package org.escort.client.context;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.escort.client.TransactionContext;
 
 /**
  * 负责分布式事务RM上下文管理（动态信息）
@@ -9,23 +8,18 @@ import org.slf4j.LoggerFactory;
  * @Author: Shoukai Huang
  * @Date: 2019/8/8 14:02
  */
-public class TransactionManager {
+public interface TransactionManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionManager.class);
+    TransactionContext getCurrentTransactionContext();
 
-    private static final ThreadLocal<TransactionContext> CURRENT = new ThreadLocal<>();
+    TransactionContext startGlobalTransaction();
 
-    public void start(TransactionContext context) {
-        LOGGER.debug("start a transaction. {}", context);
-    }
+    void endGlobalTransaction();
 
-    public void end() {
-        LOGGER.debug("end a transaction. {}", getCurrent());
-        CURRENT.remove();
-    }
+    void attachTransaction(TransactionContext transactionContext);
 
-    public TransactionContext getCurrent() {
-        return CURRENT.get();
-    }
+    TransactionContext buildSpanTransactionContext();
+
+    void endAttachTransaction();
 
 }

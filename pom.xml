@@ -24,6 +24,7 @@
         <!-- 3rd -->
         <lombok.version>1.16.20</lombok.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
+        <fastjson.version>1.2.47</fastjson.version>
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
@@ -53,6 +54,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -27,7 +27,6 @@ public class BusinessApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // TODO 先手动注入上下文信息；
         businessService.execute(new BuildOrderBO(1, 2, 3, new BigDecimal(4)));
     }
 }

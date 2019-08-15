@@ -1,6 +1,5 @@
 package org.escort.spring.client;
 
-import org.escort.client.context.DefaultMethodHandlerManager;
 import org.escort.client.pattern.tcc.BranchTccProcessor;
 import org.escort.client.pattern.tcc.GlobalTccProcessor;
 import org.escort.spring.client.annotation.EscortTransactionScanner;
@@ -20,8 +19,6 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class EscortAutoConfiguration {
 
-    private DefaultMethodHandlerManager defaultMethodHandlerManager = new DefaultMethodHandlerManager();
-
     @Bean
     public SpringConfiguration springConfiguration() {
         return new SpringConfiguration();
@@ -34,13 +31,13 @@ public class EscortAutoConfiguration {
 
     @Bean
     public BranchTccActionInterceptor branchTccActionInterceptor() {
-        BranchTccProcessor branchTccProcessor = new BranchTccProcessor(null, defaultMethodHandlerManager);
+        BranchTccProcessor branchTccProcessor = new BranchTccProcessor(null);
         return new BranchTccActionInterceptor(branchTccProcessor);
     }
 
     @Bean
     public GlobalTccInterceptor globalTccInterceptor() {
-        GlobalTccProcessor globalTccProcessor = new GlobalTccProcessor(null, defaultMethodHandlerManager);
+        GlobalTccProcessor globalTccProcessor = new GlobalTccProcessor(null);
         return new GlobalTccInterceptor(globalTccProcessor);
     }
 
@@ -53,7 +50,6 @@ public class EscortAutoConfiguration {
     public void init() {
         interceptorFilter().addInterceptor(branchTccActionInterceptor());
         interceptorFilter().addInterceptor(globalTccInterceptor());
-
     }
 
 }

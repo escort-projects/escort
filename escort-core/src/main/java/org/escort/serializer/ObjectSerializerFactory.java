@@ -10,7 +10,7 @@ public class ObjectSerializerFactory {
 
     private static volatile ObjectSerializer INSTANCE = null;
 
-    public static ObjectSerializer getConfiguration() {
+    public static ObjectSerializer getSerializer() {
         if (INSTANCE == null) {
             synchronized (ObjectSerializer.class) {
                 if (INSTANCE == null) {

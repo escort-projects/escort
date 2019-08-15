@@ -11,4 +11,6 @@ public interface PatternProcessor extends AnnotationDefine {
 
     void init(Annotation annotation, final Class clazz, final Method method) throws Exception;
 
+
+
 }

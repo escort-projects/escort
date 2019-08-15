@@ -19,14 +19,14 @@ public class SimpleServiceLoader {
     private static ConcurrentMap<String, ConcurrentMap<String, Object>> BEANS = new ConcurrentHashMap<>(128);
 
     public static synchronized void inject(Class clazz, Object object) {
-        if (BEANS.containsKey(clazz.getName())) {
+        if (!BEANS.containsKey(clazz.getName())) {
             BEANS.put(clazz.getName(), new ConcurrentHashMap<>());
         }
         BEANS.get(clazz.getName()).put(DEFAULT, object);
     }
 
     public static synchronized void inject(Class clazz, String beanName, Object object) {
-        if (BEANS.containsKey(clazz.getName())) {
+        if (!BEANS.containsKey(clazz.getName())) {
             BEANS.put(clazz.getName(), new ConcurrentHashMap<>());
         }
         BEANS.get(clazz.getName()).put(beanName, object);
