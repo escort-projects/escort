@@ -1,5 +1,7 @@
 package org.escort.client.pattern.tcc;
 
+import com.alibaba.fastjson.JSON;
+import org.escort.client.MethodHandler;
 import org.escort.client.MethodType;
 import org.escort.client.TransactionContext;
 import org.escort.client.context.ContextManager;
@@ -9,14 +11,16 @@ import org.escort.client.context.TransactionManager;
 import org.escort.client.core.BranchTccAction;
 import org.escort.client.pattern.AbstractPatternProcessor;
 import org.escort.client.pattern.BusinessHandler;
+import org.escort.protocol.transaction.RmToTcReportRequest;
 import org.escort.remote.RemoteSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.escort.common.utils.NetUtils.getLocalHost;
 
@@ -42,15 +46,20 @@ public class BranchTccProcessor extends AbstractPatternProcessor {
     }
 
     @Override
-    public void init(final Annotation annotation, final Class clazz, final Method method) throws NoSuchMethodException, IllegalAccessException {
+    public void init(final Annotation annotation, final Class clazz, final Method method, Object object) throws NoSuchMethodException, IllegalAccessException {
         LOGGER.debug("BranchTccProcessor init. Annotation: {}, Class:{}, Method:{}", annotation, clazz, method);
         BranchTccAction branchTccAction = (BranchTccAction) annotation;
-        MethodHandle methodHandle = MethodHandles.lookup().unreflect(method);
-        methodHandlerManager.register(MethodType.BRANCH_TCC_ROOT, buildRootId(clazz, method), new DefaultMethodHandler(methodHandle));
-        Method cancelMethod = clazz.getMethod(branchTccAction.cancelMethod());
-        methodHandlerManager.register(MethodType.BRANCH_TCC_CANCEL, buildRootId(clazz, cancelMethod), new DefaultMethodHandler(MethodHandles.lookup().unreflect(cancelMethod)));
-        Method commitMethod = clazz.getMethod(branchTccAction.commitMethod());
-        methodHandlerManager.register(MethodType.BRANCH_TCC_CANCEL, buildRootId(clazz, commitMethod), new DefaultMethodHandler(MethodHandles.lookup().unreflect(commitMethod)));
+        methodHandlerManager.register(MethodType.BRANCH_TCC_ROOT, buildRootId(clazz, method), new DefaultMethodHandler(object, method));
+
+        // CANCEL
+        Method cancelMethod = clazz.getMethod(branchTccAction.cancelMethod(), method.getParameterTypes());
+        MethodHandler cancelMethodHandler = new DefaultMethodHandler(object, cancelMethod);
+        methodHandlerManager.register(MethodType.BRANCH_TCC_CANCEL, buildRootId(clazz, method), cancelMethodHandler);
+
+        // COMMIT
+        Method commitMethod = clazz.getMethod(branchTccAction.commitMethod(), method.getParameterTypes());
+        MethodHandler commitMethodHandler = new DefaultMethodHandler(object, commitMethod);
+        methodHandlerManager.register(MethodType.BRANCH_TCC_COMMIT, buildRootId(clazz, method), commitMethodHandler);
     }
 
     // TODO 封装 对象体
@@ -58,9 +67,14 @@ public class BranchTccProcessor extends AbstractPatternProcessor {
         LOGGER.debug("Branch Tcc register to TC. IP: " + getLocalHost());
     }
 
-    public void reportStarted() {
+    public void reportStarted(Object[] objects) {
         TransactionContext transactionContext = transactionManager.getCurrentTransactionContext();
+        RmToTcReportRequest rmToTcReportRequest = new RmToTcReportRequest(transactionContext.getXid(), transactionContext.getParentId(), transactionContext.getSpanId());
+        List<Object> arguments = new ArrayList<>();
+        arguments.addAll(Arrays.asList(objects));
+        rmToTcReportRequest.setArguments(arguments);
         LOGGER.debug("Branch Tcc begin. TransactionContext: {}", transactionContext);
+        LOGGER.debug("to TC json: {}", JSON.toJSONString(rmToTcReportRequest));
     }
 
     public void reportFinish() {

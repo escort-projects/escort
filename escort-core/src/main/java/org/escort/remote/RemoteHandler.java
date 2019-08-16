@@ -16,7 +16,7 @@ public interface RemoteHandler {
      * @param event 消息
      * @return 结果
      */
-    <T extends BaseEvent> T receiveEventSyncReply(BaseEvent event);
+    BaseEvent receiveEventSyncReply(BaseEvent event);
 
     /**
      * 异步数据返回，当前请求不需要返回结果

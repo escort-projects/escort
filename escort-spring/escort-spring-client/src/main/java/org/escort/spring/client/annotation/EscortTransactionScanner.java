@@ -29,8 +29,11 @@ public class EscortTransactionScanner extends AbstractAutoProxyCreator implement
     public EscortTransactionScanner() {
     }
 
+    private Object current;
+
     @Override
     protected Object wrapIfNecessary(Object bean, String beanName, Object cacheKey) {
+        current = bean;
         return super.wrapIfNecessary(bean, beanName, cacheKey);
     }
 
@@ -42,7 +45,7 @@ public class EscortTransactionScanner extends AbstractAutoProxyCreator implement
             if (ReflectionUtils.isProxyTargetBean(clazz, patternProcessor.getAnnotation())) {
                 try {
                     Method method = ReflectionUtils.getMethodByAnnotation(clazz, patternProcessor.getAnnotation());
-                    patternProcessor.init(method.getAnnotation(patternProcessor.getAnnotation()), clazz, method);
+                    patternProcessor.init(method.getAnnotation(patternProcessor.getAnnotation()), clazz, method, current);
                     return new Object[]{baseTransactionInterceptor};
                 } catch (Exception e) {
                     LOGGER.error("init PatternProcessor error. ", e);

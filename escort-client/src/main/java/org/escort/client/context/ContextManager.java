@@ -85,8 +85,6 @@ public class ContextManager implements MethodHandlerManager, TransactionManager 
         return METHOD_HANDLER_MAP.get(buildMethodName(methodRootId, methodType));
     }
 
-    private static final ThreadLocal<TransactionContext> CURRENT = new ThreadLocal<>();
-
     private static String buildMethodName(String methodRootId, MethodType methodType) {
         return methodRootId + ":" + methodType;
     }

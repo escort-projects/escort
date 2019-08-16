@@ -1,8 +1,9 @@
 package org.escort.protocol.transaction;
 
-import lombok.Builder;
 import lombok.Data;
 import org.escort.protocol.TypeCodeDefine;
+
+import java.util.List;
 
 /**
  * RM report to TC
@@ -11,12 +12,17 @@ import org.escort.protocol.TypeCodeDefine;
  * @Date: 2019/8/1 19:04
  */
 @Data
-@Builder
 public class RmToTcReportRequest extends AbstractRequest {
 
     @Override
     public int getTypeCode() {
         return TypeCodeDefine.TYPE_RM_TC_REPORT;
+    }
+
+    public RmToTcReportRequest(Integer xid, Integer parentId, Integer spanId) {
+        this.xid = xid;
+        this.parentId = parentId;
+        this.spanId = spanId;
     }
 
     /**
@@ -34,7 +40,7 @@ public class RmToTcReportRequest extends AbstractRequest {
     /**
      * 业务参数
      */
-    private Object body;
+    private List<Object> arguments;
 
 
 }

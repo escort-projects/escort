@@ -29,7 +29,7 @@ public class GlobalTccProcessor extends AbstractPatternProcessor {
     }
 
     @Override
-    public void init(Annotation annotation, Class clazz, Method method) throws Exception {
+    public void init(Annotation annotation, Class clazz, Method method,Object object) throws Exception {
         // 记录注解的静态信息
         LOGGER.info("Global Tcc annotation of {}, class of {}, method of {}", annotation, clazz, method);
     }

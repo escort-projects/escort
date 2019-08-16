@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * provide for framework client
@@ -16,15 +17,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Author: Shoukai Huang
  * @Date: 2019/8/13 19:12
  */
+@RequestMapping
 public class HttpRemoteReceiver implements RemoteReceiver {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpRemoteReceiver.class);
 
     private RemoteHandler remoteHandler;
 
+    @ResponseBody
     @RequestMapping(path = "/escort/client/handle", method = RequestMethod.POST)
-    public <T extends BaseEvent> T handler(@RequestBody BaseEvent baseEvent) {
-        // TODO baseEvent can't use
+    public BaseEvent handler(@RequestBody BaseEvent baseEvent) {
+        LOGGER.info("RemoteReceiver receive: {}", baseEvent);
         return remoteHandler.receiveEventSyncReply(baseEvent);
     }
 

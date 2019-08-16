@@ -17,11 +17,11 @@ public class StockService {
         return true;
     }
 
-    public void commit() {
+    public void commit(ProductStockDTO productStock) {
         System.out.println("StockService commit 方法执行");
     }
 
-    public void cancel() {
+    public void cancel(ProductStockDTO productStock) {
         System.out.println("StockService cancel 方法执行");
     }
 }

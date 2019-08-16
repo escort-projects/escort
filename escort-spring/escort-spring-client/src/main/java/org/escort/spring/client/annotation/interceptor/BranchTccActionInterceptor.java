@@ -27,7 +27,7 @@ public class BranchTccActionInterceptor extends BaseTransactionInterceptor {
         if (branchTccAction != null) {
             System.out.println("this is @BranchTccAction");
         }
-        branchTccProcessor.reportStarted();
+        branchTccProcessor.reportStarted(invocation.getArguments());
         try {
             Object result = branchTccProcessor.proceed(new WrapperBusinessHandler(invocation));
             branchTccProcessor.reportFinish();
@@ -38,6 +38,7 @@ public class BranchTccActionInterceptor extends BaseTransactionInterceptor {
         }
     }
 
+    @Override
     public PatternProcessor getPatternProcessor() {
         return this.branchTccProcessor;
     }

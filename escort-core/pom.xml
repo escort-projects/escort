@@ -24,5 +24,10 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jvnet</groupId>
+            <artifactId>animal-sniffer-annotation</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

@@ -13,6 +13,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet</groupId>
+            <artifactId>animal-sniffer-annotation</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.escort</groupId>
             <artifactId>escort-core</artifactId>
             <version>0.1.0-SNAPSHOT</version>
