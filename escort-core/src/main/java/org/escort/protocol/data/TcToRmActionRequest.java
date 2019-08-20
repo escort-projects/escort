@@ -1,7 +1,8 @@
-package org.escort.protocol.transaction;
+package org.escort.protocol.data;
 
 import lombok.Builder;
 import lombok.Data;
+import org.escort.protocol.BaseData;
 
 /**
  * TC call RM / TM
@@ -11,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class TcToRmActionRequest extends AbstractRequest {
+public class TcToRmActionRequest extends BaseData {
 
     @Override
     public int getTypeCode() {

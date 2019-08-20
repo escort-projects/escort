@@ -1,6 +1,7 @@
-package org.escort.protocol.transaction;
+package org.escort.protocol.data;
 
 import lombok.Data;
+import org.escort.protocol.BaseData;
 import org.escort.protocol.TypeCodeDefine;
 
 import java.util.List;
@@ -12,11 +13,14 @@ import java.util.List;
  * @Date: 2019/8/1 19:04
  */
 @Data
-public class RmToTcReportRequest extends AbstractRequest {
+public class RmToTcReportRequest extends BaseData {
 
     @Override
     public int getTypeCode() {
         return TypeCodeDefine.TYPE_RM_TC_REPORT;
+    }
+
+    public RmToTcReportRequest() {
     }
 
     public RmToTcReportRequest(Integer xid, Integer parentId, Integer spanId) {
@@ -41,6 +45,5 @@ public class RmToTcReportRequest extends AbstractRequest {
      * 业务参数
      */
     private List<Object> arguments;
-
 
 }

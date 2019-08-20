@@ -8,5 +8,5 @@ public interface ObjectSerializer<T> {
 
     byte[] serialize(T t);
 
-    T deserialize(byte[] bytes);
+    T deserialize(byte[] bytes, Class<T> clazz);
 }

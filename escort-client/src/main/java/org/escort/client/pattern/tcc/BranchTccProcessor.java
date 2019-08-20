@@ -11,7 +11,7 @@ import org.escort.client.context.TransactionManager;
 import org.escort.client.core.BranchTccAction;
 import org.escort.client.pattern.AbstractPatternProcessor;
 import org.escort.client.pattern.BusinessHandler;
-import org.escort.protocol.transaction.RmToTcReportRequest;
+import org.escort.protocol.data.RmToTcReportRequest;
 import org.escort.remote.RemoteSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

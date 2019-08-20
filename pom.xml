@@ -28,6 +28,8 @@
         <fastjson.version>1.2.47</fastjson.version>
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <junit.platform.version>1.0.2</junit.platform.version>
+        <junit.jupiter.version>5.0.2</junit.jupiter.version>
     </properties>
 
     <dependencyManagement>
